@@ -18,8 +18,7 @@ var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append an SVG group that will hold our chart,
 // and shift the latter by left and top margins.
-var svg = d3
-    .select(".chart")
+var svg = d3.select(".chart")
     .append("svg")
     .attr("width", svgWidth)
     .attr("height", svgHeight);
@@ -29,7 +28,7 @@ var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Import the csv file
-d3.csv("data.csv", function(err, data) {
+d3.csv("assets/data/data.csv", function(err, data) {
     if (err) throw err;
 
     // Parse the data as numbers
@@ -45,7 +44,7 @@ d3.csv("data.csv", function(err, data) {
 
     var yLinearScale = d3.scaleLinear()
         .domain([0,d3.max(data, d => d.Mean_income)])
-        .range([heght, 0]);
+        .range([height, 0]);
 
     // Create Axes functions
     var xAxis = d3.axisBottom(xLinearScale);
@@ -66,24 +65,24 @@ d3.csv("data.csv", function(err, data) {
     .append("circle")
     .attr("cx", d => xLinearScale(d.home_owner_percent))
     .attr("cy", d => yLinearScale(d.Mean_income))
-    .attr("r", "10")
+    .attr("r", "5")
     .attr("fill", "blue")
-    .attr("opacity", ".9");
+    .attr("opacity", ".5");
 
     // Initialize the tooltip in the chart
     var toolTip = d3.tip()
         .attr("class", "tooltip")
         .offset([80, -60])
         .html(function(d) {
-            return (`${d.state}<br>Percent home owners: ${d.home_owner_percent}<br>Mean Income: ${d.Mean_income}`);
+            return (`${d.State}<br>Percent home owners: ${d.home_owner_percent}<br>Mean Income: ${d.Mean_income}`);
         });
 
     // Create tooltip in the chart
     chartGroup.call(toolTip);
 
     // Create event listeners to display and hide the tooltip
-    circlesGroup.on("click", function(item) {
-        tooTip.show(item);
+    circlesGroup.on("mouseover", function(item) {
+        toolTip.show(item);
     })
     // onmouseout event
         .on("mouseout", function(item, index) {
