@@ -65,7 +65,7 @@ d3.csv("assets/data/data.csv", function(err, data) {
     .append("circle")
     .attr("cx", d => xLinearScale(d.home_owner_percent))
     .attr("cy", d => yLinearScale(d.Mean_income))
-    .attr("r", "5")
+    .attr("r", "7.5")
     .attr("fill", "blue")
     .attr("opacity", ".5");
 
@@ -92,7 +92,7 @@ d3.csv("assets/data/data.csv", function(err, data) {
     // Create axes table
     chartGroup.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left + 40)
+        .attr("y", 0 - margin.left + 30)
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .attr("class", "axisText")
