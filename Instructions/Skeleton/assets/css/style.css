@@ -1,9 +1,16 @@
-.iframe {
+.resp-container {
   position: relative;
-  padding: 20px;
-  border: 0px solid #e3e3e3;
-  width: 960px;
-  height: 500px;
+  overflow: hidden;
+  padding-top: 0%;
+}
+
+.resp-iframe {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 1000px;
+  height: 550px;
+  border: 0;
 }
 
 /* Sticky Footer rules (https://getbootstrap.com/examples/sticky-footer/) */
